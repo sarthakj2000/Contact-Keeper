@@ -4,7 +4,6 @@ const { check, validationResult } = require('express-validator');
 const auth = require('../middleware/auth');
 const User = require('../models/User');
 const Contact = require('../models/Contact');
-const { findByIdAndUpdate } = require('../models/Contact');
 
 // @route   Get api/contacts
 //desc      get all user contacts
@@ -42,7 +41,7 @@ router.post(
       });
       const contact = await newContact.save();
       res.json(contact);
-    } catch (error) {
+    } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
     }
